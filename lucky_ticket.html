@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Щасливий квиток 🎟️</title>
+<style>
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #d8f3dc, #b7e4c7);
+    text-align: center;
+    margin-top: 100px;
+  }
+  h1 {
+    color: #1b4332;
+  }
+  input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 2px solid #40916c;
+    width: 200px;
+    text-align: center;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #2d6a4f;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover { background: #1b4332; }
+  #result {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+  <h1>🎫 Перевір свій квиток!</h1>
+  <p>Введи тризначне число — і дізнайся, чи воно щасливе 😉 (числа повинні дорівнювати 20, 974 не рахується)</p>
+
+  <input type="number" id="ticket" placeholder="Напр. 974">
+  <button onclick="checkTicket()">Перевірити</button>
+
+  <div id="result"></div>
+
+<script>
+function sumOfDigits(number) {
+  return number.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+}
+
+function checkTicket() {
+  const input = document.getElementById("ticket").value;
+  const result = document.getElementById("result");
+
+  if (input.length !== 3) {
+    result.innerHTML = "⚠️ Введи саме тризначне число!";
+    result.style.color = "#d00000";
+    return;
+  }
+
+  const sum = sumOfDigits(input);
+  if (sum === 20) {
+    result.innerHTML = "✅ Цей квиток щасливий!";
+    result.style.color = "#2d6a4f";
+  } else {
+    result.innerHTML = "😕 Цей квиток не щасливий.";
+    result.style.color = "#6c757d";
+  }
+}
+</script>
+
+</body>
+</html>
